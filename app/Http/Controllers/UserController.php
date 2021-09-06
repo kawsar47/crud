@@ -43,12 +43,16 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        User::where('id', $id)->delete();
 
-        DB::table('users')->where('id',$id)->delete();
-        return Redirect()->back();
+        return redirect('users')->with('success', 'Data Delete Successfully!');
     }
 
     public function edit($id){
+//        $user=
+
+//        $category=DB::table('categories')->where('id',$id)->first();
+//        return view('backend.category.edit',compact('category'));
 
 
     }

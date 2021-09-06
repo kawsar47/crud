@@ -17,11 +17,18 @@
         @csrf
         <div class="form-group">
             <label for="email">Full Name:</label>
-            <input type="name" class="form-control" id="name" placeholder="Enter Name" name="name">
+            <input type="name" class="form-control" id="name" value="{{$user->name}}"   name="name" required="">
         </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Category Name English</label>
+            <input type="text" class="form-control" value="{{$category->category_en}}" id="english" aria-describedby="emailHelp" name="category_en" required="">
+        </div>
+
+
         <div class="form-group">
             <label for="pwd">Age:</label>
-            <input type="number"   min="1" max="150" class="form-control" id="pwd" placeholder="Enter  Age" name="age">
+            <input type="number"   min="1" max="150" class="form-control" value="{{$user->age}}" id="pwd"  name="age" required="">
         </div>
 
         <div class="form-group">

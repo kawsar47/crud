@@ -33,8 +33,8 @@
 
 {{--                    <a href="{{route('edit.user',$row->id)}}" class="btn btn-info"> <i class="fa fa-edit"></i></a>--}}
 {{--                    <a href="{{route('delete.user',$row->id)}}" class="btn btn-danger" id="delete"> <i class="fa fa-trash"></i></a>--}}
-                    <a href="#" class="btn btn-info"> <i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger" id="delete"> <i class="fa fa-trash"></i></a>
+                    <a href="{{url('user/edit/') .$row->id}}" class="btn btn-info"> <i class="fa fa-edit"></i></a>
+                    <a href="{{url('user/destroy/'). '/' .$row->id}} " class="btn btn-danger" id="delete"> <i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         @endforeach
