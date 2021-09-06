@@ -12,18 +12,15 @@
 
 <div class="container">
     <h2> User form</h2>
-    <form  action="{{url('user/update/store',$user->id)}}"  method="POST">
+    <form  action="{{url('user/store')}}"  method="POST">
 {{--        <form action="{{route('update.category',$category->id)}}" method="post">--}}
         @csrf
+        <input type="hidden" name="id" value="{{$user->id}}">
         <div class="form-group">
             <label for="email">Full Name:</label>
             <input type="name" class="form-control" id="name" value="{{$user->name}}"   name="name" required="">
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputEmail1">Category Name English</label>
-            <input type="text" class="form-control" value="{{$category->category_en}}" id="english" aria-describedby="emailHelp" name="category_en" required="">
-        </div>
 
 
         <div class="form-group">
@@ -35,15 +32,13 @@
             <label for="gender">Gender:</label>
             <select class="form-select form-control"  name="gender">
                 <option value=""> select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
+                <option @if($user->gender = 'Male') selected @endif  value="Male">Male</option>
+                <option @if($user->gender = 'Female') selected @endif  value="Female">Female</option>
+                <option @if($user->gender = 'Other') selected @endif  value="Other">Other</option>
             </select>
         </div>
-        <div class="checkbox">
-            <label><input type="checkbox" name="remember"> Remember me</label>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+
+        <button type="submit" class="btn btn-default">Update</button>
     </form>
 </div>
 

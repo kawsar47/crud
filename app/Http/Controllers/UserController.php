@@ -37,7 +37,7 @@ class UserController extends Controller
        $user->age = $request->input('age');
        $user->save();
 
-       return redirect('users')->with('success', 'Data Insert Successfully!');
+       return redirect('user')->with('success', 'Data Insert Successfully!');
 
     }
 
@@ -49,17 +49,12 @@ class UserController extends Controller
     }
 
     public function edit($id){
-//        $user=
-
-//        $category=DB::table('categories')->where('id',$id)->first();
-//        return view('backend.category.edit',compact('category'));
-
+      $user = User::find($id);
+      return view('user_edit',compact('user'));
 
     }
 
-    public function update_store(Request $request,$id){
 
-    }
 
 
 }
