@@ -35,6 +35,7 @@
                 <option @if($user->gender = 'Male') selected @endif  value="Male">Male</option>
                 <option @if($user->gender = 'Female') selected @endif  value="Female">Female</option>
                 <option @if($user->gender = 'Other') selected @endif  value="Other">Other</option>
+                <option @if($student->section = 'A') selected @endif value="A">A</option>
             </select>
         </div>
 

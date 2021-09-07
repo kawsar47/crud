@@ -2,6 +2,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,20 @@ Route::get('/supplier/form',[SupplierController::class,'supplier_form']);
 Route::post('/supplier/store/',[SupplierController::class,'store']);
 Route::get('/supplier/edit/{id}',[SupplierController::class,'edit']);
 Route::get('/supplier/destroy/{id}', [SupplierController::class,'destroy']);
+
+//class
+Route::get('/classs',[StudentController::class,'class_index']);
+Route::get('/classs/form/',[StudentController::class,'class_form']);
+Route::post('/classs/store/',[StudentController::class,'class_store']);
+Route::get('/classs/edit/{id}',[StudentController::class,'class_edit']);
+Route::get('/classs/destroy/{id}',[StudentController::class,'class_destroy']);
+
+//students
+Route::get('/students',[StudentController::class,'index']);
+Route::get('/students/form/',[StudentController::class,'student_form']);
+Route::post('/students/store/',[StudentController::class,'store']);
+Route::get('/students/edit/{id}',[StudentController::class,'edit']);
+Route::get('/students/destroy/{id}',[StudentController::class,'destroy']);
 
 
 
