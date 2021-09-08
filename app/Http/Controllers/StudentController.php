@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Classs;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -24,36 +25,45 @@ class StudentController extends Controller
         return view('student.student_form', compact('class'));
     }
 
-    public function store(Request $request){
-//
-        $id = $request->input('id');
+    public function store(Request $request)
+    {
+        try {
+            $id = $request->input('id');
 
-        if ($id){
-            $student = Student::find($id);
-        }else{
-            $request->validate([
-                'email' => 'required|unique:students',
-                'phone' => 'required|unique:students',
+            if ($id){
+                $student = Student::find($id);
+            }else{
+                $request->validate([
+                    'email' => 'required|unique:students',
+                    'phone' => 'required|unique:students',
 
-            ]);
-            $student = new Student();
+                ]);
+                $student = new Student();
+            }
+
+            $student->name = $request->input('name');
+            $student->email = $request->input('email');
+            $student->roll = $request->input('roll');
+            $student->class_id = $request->input('class_id');
+            $student->section = $request->input('section');
+            $student->phone =$request->input('phone');
+            $student->save();
+
+            if ($id){
+                return redirect('students')->with('success', 'Data Update Successfully!');
+            }else{
+                return redirect('students')->with('success', 'Data Insert Successfully!');
+            }
+
+        }catch (Exception $exception){
+            return redirect('students')->with('error', $exception);
         }
-
-        $student->name = $request->input('name');
-        $student->email = $request->input('email');
-        $student->roll = $request->input('roll');
-        $student->class_id = $request->input('class_id');
-        $student->section = $request->input('section');
-        $student->phone =$request->input('phone');
-        $student->save();
-
-        return redirect('students')->with('success', 'Data Insert Successfully!');
     }
 
-    public function destroy($id){
 
-        Student::Where('id',$id)->delete();
-        return redirect('students')->with('success', 'Data Delete Successfully!');
+    public function destroy($id){
+        Student::find($id)->delete();
+        return redirect('students')->with('success', 'Data delete successfully!');
     }
 
     public function edit($id){
@@ -105,5 +115,14 @@ class StudentController extends Controller
     public function class_destroy($id){
         Classs::find($id)->delete();
         return redirect('classs')->with('success', 'Data Delete Successfully!');
+
+
+
+//        $notification=array(
+//            'message'=>'Successfully Deleted',
+//            'alert-type'=>'success'
+//        );
+//
+//        return Redirect()->back()->with($notification);
     }
 }

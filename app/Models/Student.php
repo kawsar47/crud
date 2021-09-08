@@ -12,3 +12,4 @@ class Student extends Model
         return $this->belongsTo(Classs::class, 'class_id');
     }
 }
+

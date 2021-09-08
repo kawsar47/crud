@@ -57,8 +57,8 @@ Route::get('/classs/destroy/{id}',[StudentController::class,'class_destroy']);
 Route::get('/students',[StudentController::class,'index']);
 Route::get('/students/form/',[StudentController::class,'student_form']);
 Route::post('/students/store/',[StudentController::class,'store']);
-Route::get('/students/edit/{id}',[StudentController::class,'edit']);
-Route::get('/students/destroy/{id}',[StudentController::class,'destroy']);
+Route::get('/student/edit/{id}',[StudentController::class,'edit']);
+Route::get('/student/destroy/{id}',[StudentController::class,'destroy']);
 
 
 

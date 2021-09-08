@@ -8,10 +8,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar{
+            margin-top: 30px;
+        }
+
+        .sidebar ul ol{
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="sidebar">
+                <ul>
+                    <ol><a href="{{url('students')}}" class="btn btn-primary">Student</a></ol>
+                    <ol><a href="{{url('classs')}}" class="btn btn-primary">class</a></ol>
+                    <ol><a href="{{url('suppliers')}}" class="btn btn-primary">Supplier</a></ol>
+                    <ol><a href="{{url('user')}}" class="btn btn-primary">User</a></ol>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="top">
+                <h2>Class Table</h2>
+                <a href="{{url('contact/form')}}" class="btn btn-primary">Add Contact</a>
+            </div>
+
+
     <h2>Contact Table</h2>
     <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
     <table class="table">
@@ -26,7 +60,7 @@
         <tbody>
         @foreach($contact as $row)
             <tr>
-                <td>{{$row->user->name}}</td>
+                <td>{{@$row->user->name}}</td>
                 <td>{{$row->email}}</td>
                 <td>{{$row->phone}}</td>
                 <td>{{$row->address}}</td>
@@ -71,6 +105,8 @@
 {{--        </tr>--}}
 {{--        </tbody>--}}
 {{--    </table>--}}
+        </div>
+    </div>
 </div>
 
 </body>
