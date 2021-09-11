@@ -33,7 +33,7 @@
                     <ol><a href="{{url('students')}}" class="btn btn-primary">Student</a></ol>
                     <ol><a href="{{url('contact')}}" class="btn btn-primary">Contact</a></ol>
                     <ol><a href="{{url('suppliers')}}" class="btn btn-primary">Supplier</a></ol>
-                    <ol><a href="{{url('user')}}" class="btn btn-primary">User</a></ol>
+                    <ol><a href="{{url('users')}}" class="btn btn-primary">User</a></ol>
                 </ul>
             </div>
         </div>

@@ -12,10 +12,11 @@
 
 <div class="container">
     <h2> User form</h2>
-    <form  action="{{url('user/store')}}"  method="POST">
+    <form  action="{{url('user/store')}}"  method="POST" enctype="multipart/form-data">
 {{--        <form action="{{route('update.category',$category->id)}}" method="post">--}}
         @csrf
         <input type="hidden" name="id" value="{{$user->id}}">
+{{--        {{$user}}--}}
         <div class="form-group">
             <label for="email">Full Name:</label>
             <input type="name" class="form-control" id="name" value="{{$user->name}}"   name="name" required="">
@@ -32,10 +33,9 @@
             <label for="gender">Gender:</label>
             <select class="form-select form-control"  name="gender">
                 <option value=""> select Gender</option>
-                <option @if($user->gender = 'Male') selected @endif  value="Male">Male</option>
-                <option @if($user->gender = 'Female') selected @endif  value="Female">Female</option>
-                <option @if($user->gender = 'Other') selected @endif  value="Other">Other</option>
-                <option @if($student->section = 'A') selected @endif value="A">A</option>
+                <option @if(@$user->gender == 'Male') selected @endif  value="Male">Male</option>
+                <option @if(@$user->gender == 'Female') selected @endif  value="Female">Female</option>
+                <option @if(@$user->gender == 'Other') selected @endif  value="Other">Other</option>
             </select>
         </div>
 
@@ -43,7 +43,7 @@
             <label for="exampleInputFile">Image</label>
             <div class="input-group">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                    <input type="file" class="custom-file-input" id="exampleInputFile" name="profile_image">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
 

@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user',[UserController::class,'index']);
+Route::get('/users',[UserController::class,'index']);
 
 Route::get('/user/form', [UserController::class, 'user_form']);
 //Route::get('/user')

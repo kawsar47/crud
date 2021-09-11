@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -19,6 +20,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+
        $request->validate([
            'name' => 'required',
            'gender' => 'required'
@@ -36,26 +38,33 @@ class UserController extends Controller
        $user->gender = $request->input('gender');
        $user->age = $request->input('age');
 //       $user->profile_image = $request->input('profile_image');
-        $user->profile_image = $request->input('profile_image');
+        $profile_image = $request->file('profile_image');
+        if($profile_image){
+            $image= uniqid().'.'.$profile_image->getClientOriginalExtension();
 
-        $image=$request->image;
-        if ($image) {
-            $image_one= uniqid().'.'.$image->getClientOriginalExtension();    //123123.jpg
-            Image::make($image)->resize(500,310)->save('public/postimages/'.$image_one);    //   public/postimages/123123.jpg
-            $data['image']='public/postimages/'.$image_one;   //   public/postimages/123123.jpg
-            DB::table('posts') ->insert($data);
-            $notification=array(
-                'messege'=>'Successfully Post Inserted ',
-                'alert-type'=>'success'
-            );
-            return Redirect()->back()->with($notification);
-        }else{
-            return Redirect()->back();
+            Image::make($profile_image)->resize(500,310)->save('public/img/'.$image);
+            $user->profile_image= $image;
+//            $user->save();
         }
+
+//        $image=$request->image;
+//        if ($image) {
+//            $image_one= uniqid().'.'.$image->getClientOriginalExtension();    //123123.jpg
+//            Image::make($image)->resize(500,310)->save('public/postimages/'.$image_one);    //   public/postimages/123123.jpg
+//            $data['image']='public/postimages/'.$image_one;   //   public/postimages/123123.jpg
+//            DB::table('posts') ->insert($data);
+//            $notification=array(
+//                'messege'=>'Successfully Post Inserted ',
+//                'alert-type'=>'success'
+//            );
+//            return Redirect()->back()->with($notification);
+//        }else{
+//            return Redirect()->back();
+//        }
 
        $user->save();
 
-       return redirect('user')->with('success', 'Data Insert Successfully!');
+       return redirect('users')->with('success', 'Data Insert Successfully!');
 
     }
 
@@ -71,8 +80,5 @@ class UserController extends Controller
       return view('user_edit',compact('user'));
 
     }
-
-
-
 
 }

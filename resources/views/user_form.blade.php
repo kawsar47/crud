@@ -7,11 +7,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <h2> User form</h2>
+
+    <div class="top">
+        <h2> User form</h2>
+        <a href="{{url('users')}}" class="btn btn-primary">User List</a>
+    </div>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -21,7 +32,7 @@
             </ul>
         </div>
     @endif
-    <form  method="POST"  action="{{url('user/store')}}">
+    <form  method="POST"  action="{{url('user/store')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="email">Full Name:</label>
@@ -47,12 +58,8 @@
             <label for="exampleInputFile">Image</label>
             <div class="input-group">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                    <input type="file" class="custom-file-input" id="exampleInputFile" name="profile_image">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                </div>
-
-                <div class="input-group-append">
-                    <span class="input-group-text" id="">Upload</span>
                 </div>
             </div>
         </div>

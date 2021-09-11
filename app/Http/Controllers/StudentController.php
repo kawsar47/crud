@@ -89,21 +89,32 @@ class StudentController extends Controller
     }
 
     public function class_store(Request $request){
-        $id = $request->input('id');
+        try{
+            $id = $request->input('id');
 
-        if ($id){
-            $class = Classs::find($id);
-        }else{
-            $request->validate([
-                'class_name' => 'required',
-            ]);
-            $class = new Classs();
+            if ($id){
+                $class = Classs::find($id);
+            }else{
+                $request->validate([
+                    'class_name' => 'required',
+                ]);
+                $class = new Classs();
+            }
+
+            $class->class_name = $request->input('class_name');
+            $class->save();
+
+            if ($id){
+                return redirect('classs')->with('success', 'Data Update Successfully!');
+            }else{
+                return redirect('classs')->with('success', 'Data Insert Successfully!');
+            }
+        }
+        catch (Exception $exception){
+            return redirect('classs')->with('error', $exception);
         }
 
-        $class->class_name = $request->input('class_name');
-        $class->save();
 
-        return redirect('classs')->with('success', 'Data Successfullyt Added');
     }
 
      public function  class_edit($id){
